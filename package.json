@@ -1,0 +1,39 @@
+{
+  "name": "club_api",
+  "version": "1.0.0",
+  "description": "Backend REST API for Club Finder",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylermaran/club_api.git"
+  },
+  "keywords": [
+    "ClubFinder",
+    "Club",
+    "Finder",
+    "API"
+  ],
+  "author": "Tyler Maran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tylermaran/club_api/issues"
+  },
+  "homepage": "https://github.com/tylermaran/club_api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^3.1.12",
+    "mongoose": "^5.4.5",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
