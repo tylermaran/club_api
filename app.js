@@ -1,15 +1,25 @@
 const express = require('express');
 const app = express();
-// require package logging - morgan
-const morgan = require('morgan');
+// require package logging - morgan - used for image uploads
+// const morgan = require('morgan');
 // require bodyparser - allows us to use req.body.whatever
 const bodyParser = require('body-parser');
 // setup mongoose - will run the MongoDB client as well as schemas and validation
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 
+// Requiring CORS package and allowing localhost:4000 to access - will update to www.clubfinder.com
+const cors = require('cors');
+
+var corsOptions = {
+    origin: 'http://localhost:4000',
+    credentials: true,
+}
+
+app.use(cors(corsOptions));
+
 // importing routes - add a new const for each of our routes
-// const productRoutes = require('./api/routes/products');
+const clubRoutes = require('./api/routes/clubs');
 // const orderRoutes = require('./api/routes/orders');
 // const userRoutes = require('./api/routes/user');
 
@@ -18,11 +28,9 @@ mongoose.set('useCreateIndex', true);
 // to do this properly, create a process.env file
 // url... + process.env.MONGO_PASSWORD + ...url
 
-// mongoose.connect('mongodb://testing:' +
-//     process.env.MONGO_PW +
-//     '@node-api-app-shard-00-00-k8f4b.mongodb.net:27017,node-api-app-shard-00-01-k8f4b.mongodb.net:27017,node-api-app-shard-00-02-k8f4b.mongodb.net:27017/test?ssl=true&replicaSet=node-api-app-shard-0&authSource=admin&retryWrites=true', {
-//         useNewUrlParser: true
-//     });
+mongoose.connect('mongodb+srv://tylermaran:' + process.env.MONGO_PW + '@cluster0-h5doz.mongodb.net/test?retryWrites=true', {
+        useNewUrlParser: true
+    });
 
 // running morgan in dev mode
 // app.use(morgan('dev'));
@@ -36,24 +44,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// Preventing any CORS Errors 
-// the '*' will give all access
-// you could do 'https://www.clubfinder.com - and only that page would have access
-// PUT, POST, PATCH, DELETE, GET are all the allowed methods
-app.use((res, req, next) => {
-    res.header('Access-Control-Alllow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-
-    if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-        res.status(200).json({});
-    }
-    next();
-});
-
 // use, as a method, sets up a middleware
 // an incoming request has to go through app.use and to whatever we pass to it
-// app.use('/products', productRoutes);
+app.use('/clubs', clubRoutes);
 // app.use('/orders', orderRoutes);
 // app.use('/user', userRoutes);
 
