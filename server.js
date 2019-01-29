@@ -8,4 +8,6 @@ const server = http.createServer(app)
 // to create a server we need to pass a listener
 // a function that is excecuted whenever we get a new request - and then returns a response
 
-server.listen(port);
+server.listen(port, () => {
+    console.log("App is running on port " + port);
+});
