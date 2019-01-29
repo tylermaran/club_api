@@ -12,7 +12,7 @@ mongoose.set('useCreateIndex', true);
 const cors = require('cors');
 
 var corsOptions = {
-    origin: '*',
+    origin: 'http://localhost:4000',
     credentials: true,
 }
 
