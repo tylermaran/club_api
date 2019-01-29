@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 // importing routes - add a new const for each of our routes
 const clubRoutes = require('./api/routes/clubs');
 // const orderRoutes = require('./api/routes/orders');
-// const userRoutes = require('./api/routes/user');
+const userRoutes = require('./api/routes/users');
 
 // connect to mongoose and you need to pass a path
 // You also need to change out the password here for your database password
@@ -47,8 +47,9 @@ app.use(bodyParser.json());
 // use, as a method, sets up a middleware
 // an incoming request has to go through app.use and to whatever we pass to it
 app.use('/clubs', clubRoutes);
+app.use('/users', userRoutes);
 // app.use('/orders', orderRoutes);
-// app.use('/user', userRoutes);
+
 
 // Error handling: if you reach this line, it is because the request did not meet any of the 
 // previous routes (/products, /orders, etc.)

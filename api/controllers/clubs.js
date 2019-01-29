@@ -53,29 +53,48 @@ exports.post_new_club = (req, res, next) => {
 exports.patch_existing_club = (req, res, next) => {
     // Lookup existing club by id
     const id = req.params.clubID;
-    console.log(id);
 
-    const updateOps = {};
-    for (const keys of Object.keys(req.body)) {
-        updateOps[keys.whatever] = req.body.keys;
+    const updateOps = {}
+    for (const key of Object.keys(req.body)) {
+        updateOps[key] = req.body[key]
     }
-    console.log(updateOps);
 
-    Club.findById(id).exec().then(result => {
+    Club.findByIdAndUpdate({
+        _id: id,
+    }, {
+        $set: updateOps
+    },
+    {
+        new: true
+    }).exec().then(result => {
         console.log(result);
         if (result) {
-            console.log('Yup');
-
             res.status(200).json({
                 message: 'Editing: ' + result.name,
                 update: result
             });
         } else {
             res.status(404).json({
-                message: 'Club not found'
+                message: 'Club not found.'
             });
         }
     }).catch(err => {
+        res.status(404).json({
+            error: err
+        });
+    });
+}
+
+// D1: Delete Club
+exports.delete_existing_club = (req, res, next) => {
+    const id = req.params.clubID;
+    Club.findByIdAndDelete(id).exec().then( result => {
+        console.log(result);
+        res.status(200).json({
+            message: 'Club Deleted'
+        });
+    }).catch( err => {
+        console.log(err);
         res.status(404).json({
             error: err
         });
