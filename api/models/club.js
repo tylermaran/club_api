@@ -12,6 +12,7 @@
 // ClubCorp member
 // Reviews
 // platinum list
+// Membership director image
 
 const mongoose = require('mongoose');
 

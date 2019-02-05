@@ -22,6 +22,8 @@ app.use(cors(corsOptions));
 const clubRoutes = require('./api/routes/clubs');
 // const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
+const surveyRoutes = require('./api/routes/survey');
+const uploadRoutes = require('./api/routes/file_upload_route');
 
 // connect to mongoose and you need to pass a path
 // You also need to change out the password here for your database password
@@ -48,7 +50,9 @@ app.use(bodyParser.json());
 // an incoming request has to go through app.use and to whatever we pass to it
 app.use('/clubs', clubRoutes);
 app.use('/users', userRoutes);
+app.use('/survey', surveyRoutes);
 // app.use('/orders', orderRoutes);
+app.use('/uploads', uploadRoutes);
 
 
 // Error handling: if you reach this line, it is because the request did not meet any of the 

@@ -14,6 +14,10 @@ const surveySchema = mongoose.Schema({
     detail: {
         type: String,
         required: true
+    },
+    position: {
+        type: Number,
+        required: true
     }
 });
 
