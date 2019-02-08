@@ -21,16 +21,29 @@ const clubSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
+    },
+    address: {
+        type: String,
+        required: false
     },
     city: {
         type: String,
-        required: true
+        required: false
+    },
+    zipCode: {
+        type: String,
+        required: false
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: false,
+        unique: true
+    },
+    images: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Image',
         required: false,
         unique: true
     }

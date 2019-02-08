@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require('./imageconfig');
+const upload = require('../middleware/imageconfig');
 
 const singleUpload = upload.single('image')
 

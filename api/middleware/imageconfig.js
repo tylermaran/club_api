@@ -1,7 +1,6 @@
 const multer = require('multer');
 const multerS3 = require('multer-s3');
-const aws = require('aws-sdk');
-const s3 = require('./imageupload');
+const s3 = require('./awsconfig');
 
 const fileFilter = (req, file, cb) => {
   // accept an incoming file
@@ -10,7 +9,6 @@ const fileFilter = (req, file, cb) => {
   } else {
     req.fileValidationError = 'Thats not a damn picture! Try something else';
     return cb(null, false, new Error('Thats not a damn picture! Try something else'));
-
   }
 };
 

@@ -1,5 +1,7 @@
 const Club = require('../models/club');
 const mongoose = require('mongoose');
+const upload = require('../middleware/imageconfig');
+const singleUpload = upload.single('image')
 
 // G1: GET All
 exports.get_all_clubs = (req, res, next) => {
@@ -63,8 +65,7 @@ exports.patch_existing_club = (req, res, next) => {
         _id: id,
     }, {
         $set: updateOps
-    },
-    {
+    }, {
         new: true
     }).exec().then(result => {
         console.log(result);
@@ -85,15 +86,75 @@ exports.patch_existing_club = (req, res, next) => {
     });
 }
 
+// P3: POST New Image
+exports.post_new_image = (req, res, next) => {
+    const id = req.params.clubID;
+    // I should check if the club id matches here first
+    singleUpload(req, res, function (err, some) {
+        console.log(some);
+        // Catch most errors
+        if (err) {
+            console.log(err);
+            return res.status(422).send({
+                errors: [{
+                    title: 'Image Upload Error',
+                    detail: err.message
+                }]
+            });
+        }
+        // Catch file validation errors - sent from middleware/imageconfig.js
+        if (req.fileValidationError) {
+            return res.status(500).end(
+                res.json({
+                    message: req.fileValidationError
+                })
+            );
+        }
+
+        // Success Case - Find Club by ID and update image field
+        const updateOps = {
+            // image characteristics
+        }
+        Club.findByIdAndUpdate({
+            _id: id,
+        }, {
+            $set: updateOps
+        }, {
+            new: true
+        }).exec().then(result => {
+            console.log(result);
+            if (result) {
+                res.status(200).json({
+                    message: 'Editing: ' + result.name,
+                    update: result
+                });
+            } else {
+                res.status(404).json({
+                    message: 'Club not found.'
+                });
+            }
+        }).catch(err => {
+            res.status(404).json({
+                error: err
+            });
+        });
+
+
+        res.status(200).json({
+            'imageUrl': req.file.location
+        });
+    });
+}
+
 // D1: Delete Club
 exports.delete_existing_club = (req, res, next) => {
     const id = req.params.clubID;
-    Club.findByIdAndDelete(id).exec().then( result => {
+    Club.findByIdAndDelete(id).exec().then(result => {
         console.log(result);
         res.status(200).json({
-            message: 'Club Deleted'
+            message: 'Club Successfully Deleted'
         });
-    }).catch( err => {
+    }).catch(err => {
         console.log(err);
         res.status(404).json({
             error: err

@@ -6,8 +6,6 @@ const ClubController = require('../controllers/clubs');
 // Add multer setup for images
 // add file filter to set image guidelines
 
-
-
 // G1: GET All - Return all Club Detail
 router.get('/', ClubController.get_all_clubs);
 
@@ -18,6 +16,9 @@ router.post('/', ClubController.post_new_club);
 
 // P2: PATCH Existing Club
 router.patch('/:clubID', ClubController.patch_existing_club);
+
+// P3: POST New Image to Club
+router.post('/images/:clubID', ClubController.post_new_image);
 
 // D1: DELETE Existing Club
 router.delete('/:clubID', ClubController.delete_existing_club);
