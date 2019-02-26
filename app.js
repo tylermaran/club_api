@@ -20,10 +20,9 @@ app.use(cors(corsOptions));
 
 // importing routes - add a new const for each of our routes
 const clubRoutes = require('./api/routes/clubs');
-// const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
 const surveyRoutes = require('./api/routes/survey');
-const uploadRoutes = require('./api/routes/file_upload_route');
+const imageRoutes = require('./api/routes/images');
 
 // connect to mongoose and you need to pass a path
 // You also need to change out the password here for your database password
@@ -31,8 +30,10 @@ const uploadRoutes = require('./api/routes/file_upload_route');
 // url... + process.env.MONGO_PASSWORD + ...url
 
 mongoose.connect('mongodb+srv://tylermaran:' + process.env.MONGO_PW + '@cluster0-h5doz.mongodb.net/test?retryWrites=true', {
-        useNewUrlParser: true
-    });
+    useNewUrlParser: true
+});
+
+mongoose.set('useFindAndModify', false)
 
 // running morgan in dev mode
 // app.use(morgan('dev'));
@@ -51,8 +52,7 @@ app.use(bodyParser.json());
 app.use('/clubs', clubRoutes);
 app.use('/users', userRoutes);
 app.use('/survey', surveyRoutes);
-// app.use('/orders', orderRoutes);
-app.use('/uploads', uploadRoutes);
+app.use('/images', imageRoutes);
 
 
 // Error handling: if you reach this line, it is because the request did not meet any of the 

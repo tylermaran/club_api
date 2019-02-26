@@ -41,12 +41,16 @@ const clubSchema = mongoose.Schema({
         required: false,
         unique: true
     },
-    images: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Image',
-        required: false,
-        unique: true
-    }
+    images: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Image',
+            required: false
+        }
+    ]
+
+
+
 });
 
 // We want to export the schema wrapped in a model that contains our schema

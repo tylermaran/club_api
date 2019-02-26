@@ -1,21 +1,31 @@
 const mongoose = require('mongoose');
 
 // make sure to use the mongoose.Schema.whatever when designating the schema
+// Takes in imageURL from AWS S3 Upload
 const imageSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    description: {
+    url: {
+        type: String,
+        required: true,
+        timestamps: true
+    },
+    fileName: {
         type: String,
         required: true
     },
-    fileSize: {
+    description: {
         type: String,
         required: false
     },
-    clubId: {
+    fileSize: {
+        type: String,
+        required: true
+    },
+    clubID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Club',
-        required: false,
-        unique: true
+        required: true,
+        unique: false
     },
     mainImage: {
         type: Boolean,
@@ -26,11 +36,6 @@ const imageSchema = mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
-    },
-    date: {
-        type: Date,
-        required: true,
-        default: Date().toISOString().replace(/:/g, '-').substring(0, 10)
     }
 });
 

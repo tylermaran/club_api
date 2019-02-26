@@ -10,6 +10,7 @@ const ClubController = require('../controllers/clubs');
 router.get('/', ClubController.get_all_clubs);
 
 // G2: GET Overview - Return basic detail for clubs.
+router.get('/:clubID', ClubController.get_one_club);
 
 // P1: POST New Club - Add a new Club
 router.post('/', ClubController.post_new_club);
@@ -18,7 +19,7 @@ router.post('/', ClubController.post_new_club);
 router.patch('/:clubID', ClubController.patch_existing_club);
 
 // P3: POST New Image to Club
-router.post('/images/:clubID', ClubController.post_new_image);
+// router.post('/images/:clubID', ClubController.post_new_image);
 
 // D1: DELETE Existing Club
 router.delete('/:clubID', ClubController.delete_existing_club);

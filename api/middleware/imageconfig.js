@@ -24,7 +24,8 @@ const upload = multer({
     },
     key: function (req, file, cb) {
       cb(null, new Date().toISOString().replace(/:/g, '-').substring(0, 10) + '-' + file.originalname);
-    }
+    },
+    ContentType: 'image/jpg' || 'image/png' || 'image/tif'
   }),
   fileFilter: fileFilter,
   limits: {
