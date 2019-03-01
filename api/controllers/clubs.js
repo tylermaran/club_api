@@ -55,7 +55,11 @@ exports.post_new_club = (req, res, next) => {
             const club = new Club({
                 _id: new mongoose.Types.ObjectId(),
                 name: req.body.name,
-                city: req.body.city
+                address: req.body.address,
+                city: req.body.city,
+                zipCode: req.body.zipCode,
+                user: req.body.user,
+                images: req.body.images
             });
 
             // Save new club to DB

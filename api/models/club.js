@@ -21,19 +21,23 @@ const clubSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
-        required: true
+        required: true,
+        timestamps: true
     },
     address: {
         type: String,
-        required: false
+        required: false,
+        default: 'Address'
     },
     city: {
         type: String,
-        required: false
+        required: false,
+        default: 'City'
     },
     zipCode: {
         type: String,
-        required: false
+        required: false,
+        default: 'ZipCode'
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -47,9 +51,16 @@ const clubSchema = mongoose.Schema({
             ref: 'Image',
             required: false
         }
-    ]
-
-
+    ],
+    url: {
+        type: String,
+        required: false
+    },
+    profilePic: {
+        type: String,
+        required: true,
+        default: 'https://via.placeholder.com/100'
+    }
 
 });
 
