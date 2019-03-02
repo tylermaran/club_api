@@ -48,7 +48,7 @@ exports.post_new_club = (req, res, next) => {
         if (result) {
             console.log('Error Duplication: ' + req.body.name);
             res.status(500).json({
-                message: 'Error: Club is a duplication'
+                error: 'Error: Club is a duplication'
             });
         } else {
             // Create new club object from body data

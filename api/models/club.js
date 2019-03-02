@@ -34,6 +34,11 @@ const clubSchema = mongoose.Schema({
         required: false,
         default: 'City'
     },
+    state: {
+        type: String,
+        required: true,
+        default: 'State'
+    },
     zipCode: {
         type: String,
         required: false,
@@ -59,7 +64,12 @@ const clubSchema = mongoose.Schema({
     profilePic: {
         type: String,
         required: true,
-        default: 'https://via.placeholder.com/100'
+        default: 'https://via.placeholder.com/200'
+    },
+    description: {
+        type: String,
+        required: false,
+        default: 'An undescribable club experience!'
     }
 
 });

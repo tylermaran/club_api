@@ -37,6 +37,11 @@ const userSchema = mongoose.Schema({
     surveyResponse: {
         type: Array,
         required: false
+    },
+    profilePic: {
+        type: String,
+        required: true,
+        default: 'https://via.placeholder.com/100'
     }
 });
 
