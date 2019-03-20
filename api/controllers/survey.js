@@ -18,29 +18,33 @@ exports.get_all_questions = (req, res, next) => {
 
 // P1: POST New Survey Item
 exports.post_new_question = (req, res, next) => {
-    Survey.find().exec().then( result => {
+    Survey.find().exec().then(result => {
         console.log(result);
-    }).catch( err => {
+    }).catch(err => {
         res.status(404).json({
             error: err
         });
     });
-    
+
+    console.log(req.body);
+
     const question = new Survey({
         _id: new mongoose.Types.ObjectId,
-        question: req.body.question,
-        description: req.body.description,
-        detail: req.body.detail,
-        position: req.body.position
+        question: {
+            name: req.body.name,
+            questionText: req.body.questionText,
+            description: req.body.description,
+            detail: req.body.detail
+        }
     });
 
-    question.save().then( result => {
-      console.log(result);
-      res.status(200).json({
-          message: 'Question added successfully',
-          result: result
-      })  
-    }).catch( err => {
+    question.save().then(result => {
+        console.log(result);
+        res.status(200).json({
+            message: 'Survey added successfully',
+            result: result
+        })
+    }).catch(err => {
         console.log(err);
         res.status(500).json({
             error: err
@@ -53,20 +57,24 @@ exports.post_new_question = (req, res, next) => {
 exports.patch_existing_question = (req, res, next) => {
     // Lookup existing question by id
     const id = req.params.questionID;
-
+    console.log('Question ID: ' + id)
     const updateOps = {}
     for (const key of Object.keys(req.body)) {
         updateOps[key] = req.body[key]
     }
 
+    console.log('Update Ops')
+    console.log(updateOps);
+
     Survey.findByIdAndUpdate({
         _id: id,
     }, {
         $set: updateOps
-    },
-    {
-        new: true
+    }, {
+        new: true,
+        upsert: true
     }).exec().then(result => {
+        console.log('Successsss!');
         console.log(result);
         if (result) {
             res.status(200).json({
@@ -74,11 +82,14 @@ exports.patch_existing_question = (req, res, next) => {
                 update: result
             });
         } else {
+            console.log('Error');
             res.status(404).json({
                 message: 'Question not found.'
             });
         }
     }).catch(err => {
+        console.log('Catch Block - Survey');
+        console.log(err);
         res.status(404).json({
             error: err
         });
@@ -89,12 +100,12 @@ exports.patch_existing_question = (req, res, next) => {
 // D1: DELETE Existing Survey Item
 exports.delete_existing_question = (req, res, next) => {
     const id = req.params.questionID;
-    Survey.findByIdAndDelete(id).exec().then( result => {
+    Survey.findByIdAndDelete(id).exec().then(result => {
         console.log(result);
         res.status(200).json({
             message: 'Question Deleted'
         });
-    }).catch( err => {
+    }).catch(err => {
         console.log(err);
         res.status(404).json({
             error: err

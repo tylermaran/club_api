@@ -1,7 +1,7 @@
 const Club = require('../models/club');
 const mongoose = require('mongoose');
 const upload = require('../middleware/imageconfig');
-const singleUpload = upload.single('image')
+const singleUpload = upload.single('image');
 
 // G1: GET All
 exports.get_all_clubs = (req, res, next) => {
@@ -57,9 +57,11 @@ exports.post_new_club = (req, res, next) => {
                 name: req.body.name,
                 address: req.body.address,
                 city: req.body.city,
+                state: req.body.state,
                 zipCode: req.body.zipCode,
                 user: req.body.user,
-                images: req.body.images
+                images: req.body.images,
+                url: req.body.url
             });
 
             // Save new club to DB

@@ -50,16 +50,15 @@ const clubSchema = mongoose.Schema({
         required: false,
         unique: true
     },
-    images: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Image',
-            required: false
-        }
-    ],
+    images: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Image',
+        required: false
+    }],
     url: {
         type: String,
-        required: false
+        required: false,
+        default: 'Empty'
     },
     profilePic: {
         type: String,

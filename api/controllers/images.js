@@ -22,6 +22,7 @@ exports.get_existing_image = (req, res, next) => {
 // P1: POST New Image
 exports.post_new_image = (req, res, next) => {
     const clubID = req.params.clubID;
+    console.log('Post New Picture:')
     // I should check if the club id matches here first
     singleUpload(req, res, function (err, some) {
         // Catch most errors
@@ -42,6 +43,8 @@ exports.post_new_image = (req, res, next) => {
                 })
             );
         }
+
+        console.log(req.file);
         // Success Case - Find Club by ID and update image field
         // Create new Image entry in DB
         const image = new Image({
@@ -52,7 +55,7 @@ exports.post_new_image = (req, res, next) => {
             fileSize: req.file.size,
             clubID: clubID,
             mainImage: req.body.mainImage,
-            profilePicture: req.body.profilePicture
+            profilePicture: false
         });
         // Save new club to DB
         image.save().then(result => {

@@ -15,6 +15,26 @@ exports.get_all_users = (req, res, next) => {
     });
 }
 
+// G2: Get Specific User
+exports.get_one_user = (req, res, next) => {
+    const userID = req.params.userID;
+    console.log('UserID: ' + userID);
+    User.findById(userID)
+        .select()
+        .populate('savedClub')
+        // .populate('user')
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json(result);
+        }).catch(err => {
+            console.log(err);
+            res.status(404).json({
+                error: err
+            });
+        })
+}
+
 
 // P1: POST New User
 exports.post_new_user = (req, res, next) => {
