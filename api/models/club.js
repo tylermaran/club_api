@@ -56,6 +56,11 @@ const clubSchema = mongoose.Schema({
         required: true,
         default: 'https://via.placeholder.com/200'
     },
+    phone_number: {
+        type: Number,
+        required: true,
+        default: null
+    },
     description_mini: { // Mini Description (first 100ish characters of description)
         type: String,
         required: true,
@@ -100,6 +105,11 @@ const clubSchema = mongoose.Schema({
                 required: true,
                 default: false
             },
+            golf_form: {
+                type: Boolean,
+                required: true,
+                default: true
+            },
             description: {
                 type: String,
                 required: true,
@@ -118,7 +128,7 @@ const clubSchema = mongoose.Schema({
             private_course: {
                 type: Boolean,
                 required: true,
-                default: true
+                default: null
             },
             number_holes: {
                 type: Number,
@@ -162,6 +172,11 @@ const clubSchema = mongoose.Schema({
             },
             club_rental: {
                 type: Boolean,
+                required: true,
+                default: null
+            },
+            architect: {
+                type: String,
                 required: true,
                 default: null
             }
@@ -380,8 +395,11 @@ const clubSchema = mongoose.Schema({
                 type: String,
                 required: true,
                 default: null
-            },
+            }
         } 
+    },
+    survey_results: {
+        
     }
 });
 

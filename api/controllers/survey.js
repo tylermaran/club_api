@@ -15,7 +15,6 @@ exports.get_all_questions = (req, res, next) => {
     });
 }
 
-
 // P1: POST New Survey Item
 exports.post_new_question = (req, res, next) => {
     Survey.find().exec().then(result => {
@@ -58,10 +57,10 @@ exports.patch_existing_question = (req, res, next) => {
     // Lookup existing question by id
     const id = req.params.questionID;
     console.log('Question ID: ' + id)
-    const updateOps = {}
-    for (const key of Object.keys(req.body)) {
-        updateOps[key] = req.body[key]
-    }
+    const updateOps = req.body;
+    // for (const key of Object.keys(req.body)) {
+    //     updateOps[key] = req.body[key]
+    // }
 
     console.log('Update Ops')
     console.log(updateOps);

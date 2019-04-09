@@ -1,4 +1,5 @@
 const Club = require('../models/club');
+const Survey = require('../models/survey');
 const mongoose = require('mongoose');
 const upload = require('../middleware/imageconfig');
 const singleUpload = upload.single('image');
@@ -36,7 +37,40 @@ exports.get_one_club = (req, res, next) => {
             res.status(404).json({
                 error: err
             });
-        })
+        });
+}
+
+// G3: GET Club and Survey Data - Survey Answer Page
+exports.get_club_survey = (req, res, next) => {
+    const clubID = req.params.clubID;
+    console.log('ClubID: ' + clubID);
+    Club.findById(clubID)
+        .select()
+        .exec()
+        .then(result => {
+            let response = [];
+            // Result is club data
+            response.push(result);
+
+            // Chaining Survey Lookup and appending object to one array
+            Survey.find().select().exec().then(survey => {
+                
+                // survey is survey data
+                response.push(survey);
+                console.log(response);
+                res.status(200).json(response);
+            }).catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error: err
+                });
+            });
+        }).catch(err => {
+            console.log(err);
+            res.status(404).json({
+                error: err
+            });
+        });
 }
 
 // P1: POST New Club

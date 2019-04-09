@@ -12,6 +12,9 @@ router.get('/', ClubController.get_all_clubs);
 // G2: GET Overview - Return basic detail for clubs.
 router.get('/:clubID', ClubController.get_one_club);
 
+// G3: GET Survey Detail - Return Club detail + Survey detail
+router.get('/survey/:clubID', ClubController.get_club_survey);
+
 // P1: POST New Club - Add a new Club
 router.post('/', ClubController.post_new_club);
 
