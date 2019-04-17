@@ -399,7 +399,9 @@ const clubSchema = mongoose.Schema({
         } 
     },
     survey_results: {
-        
+        type: Object,
+        required: false,
+        default: null
     }
 });
 
