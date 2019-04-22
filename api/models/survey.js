@@ -63,6 +63,11 @@ const surveySchema = mongoose.Schema({
                     type: String,
                     required: true,
                     default: null
+                },
+                golf_range: {
+                    type: Array,
+                    required: true,
+                    default: [9,18,27,36]
                 }
             },
             driving_range: {
@@ -75,6 +80,11 @@ const surveySchema = mongoose.Schema({
                     type: String,
                     required: true,
                     default: null
+                },
+                boolean: {
+                    type: Boolean,
+                    required: true,
+                    default: true
                 }
             },
             cart_rental: {
@@ -87,6 +97,11 @@ const surveySchema = mongoose.Schema({
                     type: String,
                     required: true,
                     default: null
+                },
+                boolean: {
+                    type: Boolean,
+                    required: true,
+                    default: true
                 }
             },
             club_rental: {
@@ -99,6 +114,11 @@ const surveySchema = mongoose.Schema({
                     type: String,
                     required: true,
                     default: null
+                },
+                boolean: {
+                    type: Boolean,
+                    required: true,
+                    default: true
                 }
             },
             private_course: {
@@ -111,6 +131,11 @@ const surveySchema = mongoose.Schema({
                     type: String,
                     required: true,
                     default: null
+                },
+                private_range: {
+                    type: Array,
+                    required: true,
+                    default: ['Private', 'Public']
                 }
             }
         }
@@ -172,6 +197,11 @@ const surveySchema = mongoose.Schema({
                     type: String,
                     required: true,
                     default: null
+                },
+                tennis_range: {
+                    type: Array,
+                    required: true,
+                    default: ['1-2', '3-5', '6-9', '10+']
                 }
             },
             coaching_available: {
@@ -182,6 +212,11 @@ const surveySchema = mongoose.Schema({
                 },
                 answer: {
                     type: String,
+                    required: true,
+                    default: null
+                },
+                boolean: {
+                    type: Boolean,
                     required: true,
                     default: null
                 }
