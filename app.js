@@ -12,7 +12,7 @@ mongoose.set('useCreateIndex', true);
 const cors = require('cors');
 
 var corsOptions = {
-    origin: 'http://localhost:4000',
+    origin: 'http://localhost:3000',
     credentials: true,
 }
 
@@ -53,7 +53,11 @@ app.use('/clubs', clubRoutes);
 app.use('/users', userRoutes);
 app.use('/survey', surveyRoutes);
 app.use('/images', imageRoutes);
-
+app.use('/', (req, res, next) => {
+    res.status(200).json({
+        message: 'Welcome to ClubFinder API!'
+    })
+})
 
 // Error handling: if you reach this line, it is because the request did not meet any of the 
 // previous routes (/products, /orders, etc.)
