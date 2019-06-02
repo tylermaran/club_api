@@ -21,6 +21,9 @@ router.post('/', ClubController.post_new_club);
 // P2: PATCH Existing Club
 router.patch('/:clubID', ClubController.patch_existing_club);
 
+// P3: POST: Search Existing Club
+router.post('/search', ClubController.search_existing_club);
+
 // P3: POST New Image to Club
 // router.post('/images/:clubID', ClubController.post_new_image);
 

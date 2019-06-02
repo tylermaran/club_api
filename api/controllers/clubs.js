@@ -149,6 +149,27 @@ exports.patch_existing_club = (req, res, next) => {
     });
 }
 
+// P3: Search for Existing Club
+exports.search_existing_club = (req, res, next) => {
+    console.log('searching for ' + req.body.name);
+    // concats name with /i to search for names similar to X
+    let query = new RegExp(req.body.name,'i');
+
+    Club.find({ name: query }).exec().then(result => {
+        if (result) {
+            
+            res.status(200).json({
+                data: result
+            });
+        } else {
+            console.log('No club found');
+            res.status(400).json({
+                error: 'No club found'
+            });
+        }
+    });
+}
+
 // D1: Delete Club
 exports.delete_existing_club = (req, res, next) => {
     const id = req.params.clubID;
