@@ -15,6 +15,9 @@ router.get('/:clubID', ClubController.get_one_club);
 // G3: GET Survey Detail - Return Club detail + Survey detail
 router.get('/survey/:clubID', ClubController.get_club_survey);
 
+// G4: GET Geo Location
+router.get('/search/location', ClubController.get_geo_location);
+
 // P1: POST New Club - Add a new Club
 router.post('/', ClubController.post_new_club);
 

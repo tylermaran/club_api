@@ -73,6 +73,28 @@ exports.get_club_survey = (req, res, next) => {
         });
 }
 
+// G4: 
+exports.get_geo_location = (req, res, next) => {
+    console.log('Hits geolocation');
+    Club.find(
+        {
+        "loc": {
+            $near: {
+            $geometry: {
+                type: "Point" ,
+                coordinates: [ 33.837 , -84.385 ],
+                $maxDistance: 500
+                }
+            }
+        }
+    }).exec().then(result => {
+        console.log(result);
+        res.json({
+            data: result
+        })
+    })
+}
+
 // P1: POST New Club
 exports.post_new_club = (req, res, next) => {
     // Preventing Duplicate Clubs - search by name
@@ -93,11 +115,13 @@ exports.post_new_club = (req, res, next) => {
                 city: req.body.city,
                 state: req.body.state,
                 zipCode: req.body.zipCode,
+                loc: req.body.loc,
                 user: req.body.user,
                 images: req.body.images,
                 url: req.body.url
             });
 
+        
             // Save new club to DB
             club.save().then(result => {
                 console.log(result);
@@ -123,6 +147,7 @@ exports.patch_existing_club = (req, res, next) => {
     for (const key of Object.keys(req.body)) {
         updateOps[key] = req.body[key]
     }
+    
 
     Club.findByIdAndUpdate({
         _id: id,

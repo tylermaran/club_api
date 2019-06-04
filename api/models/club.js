@@ -35,6 +35,17 @@ const clubSchema = mongoose.Schema({
         required: false,
         default: 'ZipCode'
     },
+    loc: { //Lat / long index
+        type: {
+            type: String,
+            required: true,
+            default: 'Point'
+        },
+        coordinates: {
+            type: [Number],
+            default: [0,0]
+        }
+    },
     user: { // Linked user (linked schema)
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
