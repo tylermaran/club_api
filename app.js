@@ -55,7 +55,9 @@ app.use('/survey', surveyRoutes);
 app.use('/images', imageRoutes);
 app.use('/', (req, res, next) => {
     res.status(200).json({
-        message: 'Welcome to ClubFinder API!'
+        message: 'Welcome to ClubFinder API!',
+        contact: 'If you are interesting data sharing - please email api@clubfinder.us',
+        ps: 'If your name is Jay - stop messing with my api'
     })
 })
 
