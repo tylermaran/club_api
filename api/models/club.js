@@ -35,10 +35,14 @@ const clubSchema = mongoose.Schema({
         required: false,
         default: 'ZipCode'
     },
+    formatted_address: {
+        type: String,
+        required: false
+    },
     loc: { //Lat / long index
         type: {
             type: String,
-            required: true,
+            required: false,
             default: 'Point'
         },
         coordinates: {
@@ -64,43 +68,43 @@ const clubSchema = mongoose.Schema({
     },
     profilePic: { // Profile Picture
         type: String,
-        required: true,
+        required: false,
         default: 'https://via.placeholder.com/200'
     },
     phone_number: {
         type: Number,
-        required: true,
+        required: false,
         default: null
     },
     description_mini: { // Mini Description (first 100ish characters of description)
         type: String,
-        required: true,
+        required: false,
         default: 'An indescribable club experience!'
     },
     description: { // Description
         type: String,
-        required: true,
+        required: false,
         default: 'An indescribable club experience!'
     },
     membership_director: {
         md_name: {
             type: String,
-            required: true,
+            required: false,
             default: null
         },
         md_description: {
             type: String,
-            required: true,
+            required: false,
             default: null
         },
         md_url: {
             type: String,
-            required: true,
+            required: false,
             default: null
         },
         md_profile_picture: {
             type: String,
-            required: true,
+            required: false,
             default: 'https://via.placeholder.com/200'
         }
     },
@@ -108,303 +112,303 @@ const clubSchema = mongoose.Schema({
         facilities_golf: { // Golf 
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Golf'
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             golf_form: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: true
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             private_course: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: null
             },
             number_holes: {
                 type: Number,
-                required: true,
+                required: false,
                 default: 9
             },
             par: {
                 type: Number,
-                required: true,
+                required: false,
                 default: null
             },
             length: {
                 type: Number,
-                required: true,
+                required: false,
                 default: null
             },
             slope: {
                 type: Number,
-                required: true,
+                required: false,
                 default: null
             },
             driving_range: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: null
             },
             year_built: {
                 type: Number,
-                required: true,
+                required: false,
                 default: null
             },
             golf_season: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Year Round'
             },
             cart_rental: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: null
             },
             club_rental: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: null
             },
             architect: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             }
         },
         facilities_tennis: { // Tennis
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Tennis'   
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
         },
         facilities_fitness: { // Fitness
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Fitness'
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
         },
         facilities_dining: { // Dining
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Dining'
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             }
         },
         facilities_kids: { // Kids
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Kids Facilities'
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             }
         },
         facilities_reciprocal: { // Reciprocal Memberships
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Reciprocal Memberships'
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             }
         },
         facilities_skiing: { // Skiing (beta)
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Skiing'
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             }
         },
         facilities_sailing: { // Sailing (beta)
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Sailing'
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             }
         },
         facilities_custom: { // Tennis
             name: {
                 type: String,
-                required: true,
+                required: false,
                 default: 'Custom Option'   
             },
             exists: {
                 type: Boolean,
-                required: true,
+                required: false,
                 default: false
             },
             description: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url_title: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
                 default: null
             }
         } 

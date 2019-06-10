@@ -16,7 +16,7 @@ router.get('/:clubID', ClubController.get_one_club);
 router.get('/survey/:clubID', ClubController.get_club_survey);
 
 // G4: GET Geo Location
-router.get('/search/location', ClubController.get_geo_location);
+// router.get('/search/location', ClubController.get_geo_location);
 
 // P1: POST New Club - Add a new Club
 router.post('/', ClubController.post_new_club);
@@ -24,8 +24,11 @@ router.post('/', ClubController.post_new_club);
 // P2: PATCH Existing Club
 router.patch('/:clubID', ClubController.patch_existing_club);
 
-// P3: POST: Search Existing Club
+// P3: POST: Search Existing Club (keyword)
 router.post('/search', ClubController.search_existing_club);
+
+// P4: POST: Search Existing Club (location)
+router.post('/search/location', ClubController.get_geo_location);
 
 // P3: POST New Image to Club
 // router.post('/images/:clubID', ClubController.post_new_image);
