@@ -241,19 +241,20 @@ exports.get_geo_location = (req, res, next) => {
     console.log('user_long: ' + req.body.user_long);
     console.log('max distance: ' + req.body.max_distance);
 
+
     Club.find(
         {
         "loc": {
             $near: {
             $geometry: {
                 type: "Point" ,
-                coordinates: [ -122.41208, 37.78235 ],
-                $maxDistance: 5000
-                }
+                coordinates: [ req.body.user_long, req.body.user_lat ]
+            },
+            $maxDistance: req.body.max_distance
             }
         }
         // Set limit to 20 - normal response is capped at 100
-    }).limit(20).exec().then(result => {
+    }).limit(10).exec().then(result => {
         console.log(result);
         res.json({
             data: result
