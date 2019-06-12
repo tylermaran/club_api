@@ -15,6 +15,9 @@ router.get('/:clubID', ClubController.get_one_club);
 // G3: GET Survey Detail - Return Club detail + Survey detail
 router.get('/survey/:clubID', ClubController.get_club_survey);
 
+// G4: GET Club by Name
+router.get('/find/:clubState/:clubName', ClubController.get_club_name);
+
 // G4: GET Geo Location
 // router.get('/search/location', ClubController.get_geo_location);
 

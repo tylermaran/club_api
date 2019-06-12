@@ -74,27 +74,37 @@ exports.get_club_survey = (req, res, next) => {
         });
 }
 
-// G4: 
-exports.get_geo_location = (req, res, next) => {
-    console.log('Hits geolocation');
-    Club.find(
-        {
-        "loc": {
-            $near: {
-            $geometry: {
-                type: "Point" ,
-                coordinates: [ 33.837 , -84.385 ],
-                $maxDistance: 500
-                }
-            }
-        }
-    }).exec().then(result => {
-        console.log(result);
-        res.json({
-            data: result
-        })
+// G4: Get Specific Club
+exports.get_club_name = (req, res, next) => {
+    const clubName = req.params.clubName;
+    const clubState = req.params.clubState;
+    console.log('ClubID: ' + clubName);
+    console.log('Club State: ' + clubState);
+
+    // res.status(200).json({
+    //     clubName: clubName,
+    //     clubState: clubState
+    // });
+
+    Club.find({
+        name: clubName,
+        state: clubState
     })
+        .select()
+        .populate('images')
+        .populate('user')
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json(result);
+        }).catch(err => {
+            console.log(err);
+            res.status(404).json({
+                error: err
+            });
+        });
 }
+
 
 // P1: POST New Club
 exports.post_new_club = (req, res, next) => {
