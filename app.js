@@ -11,9 +11,14 @@ mongoose.set('useCreateIndex', true);
 // Requiring CORS package and allowing localhost:4000 to access - will update to www.clubfinder.com
 const cors = require('cors');
 
+const origin = [
+    'http://localhost:3000',
+    'http://clubfinder.us-east-2.elasticbeanstalk.com'   
+]
+
 var corsOptions = {
     // origin: 'http://localhost:3000',
-    origin: 'http://clubfinder.us-east-2.elasticbeanstalk.com',
+    origin: origin,
     credentials: true,
 }
 
