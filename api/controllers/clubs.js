@@ -76,6 +76,7 @@ exports.get_club_survey = (req, res, next) => {
 
 // G4: Get Specific Club
 exports.get_club_name = (req, res, next) => {
+    console.log(req.params);
     const clubName = req.params.clubName;
     const clubState = req.params.clubState;
     console.log('ClubID: ' + clubName);
