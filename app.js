@@ -12,7 +12,8 @@ mongoose.set('useCreateIndex', true);
 const cors = require('cors');
 
 var corsOptions = {
-    origin: 'http://localhost:3000' || 'http://clubfinder.us-east-2.elasticbeanstalk.com/',
+    // origin: 'http://localhost:3000'
+    origin: 'http://clubfinder.us-east-2.elasticbeanstalk.com/',
     credentials: true,
 }
 
