@@ -19,7 +19,7 @@ const origin = [
 
 var corsOptions = {
     // origin: 'http://localhost:3000',
-    origin: origin,
+    origin: true,
     credentials: true,
     allowedHeaders: ['Content-Type']
 }
