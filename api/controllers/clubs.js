@@ -122,6 +122,12 @@ exports.post_new_club = (req, res, next) => {
             });
         } else {
 
+            let slug = 'Cherokee Town & Country Club';
+            slug = slug.replace(/ /g, '-');
+            slug = slug.replace(/&/g, 'and');
+            console.log(slug);
+
+
             let trimmed_address = req.body.address.trim();
             console.log(trimmed_address);
             // Get Lat/Long from address
@@ -151,6 +157,7 @@ exports.post_new_club = (req, res, next) => {
                 // Create new club object from body data
                 const club = new Club({
                     _id: new mongoose.Types.ObjectId(),
+                    slug: slug,
                     name: req.body.name,
                     address: req.body.address,
                     city: req.body.city,

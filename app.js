@@ -13,7 +13,8 @@ const cors = require('cors');
 
 const origin = [
     'http://localhost:3000',
-    'http://clubfinder.us-east-2.elasticbeanstalk.com'   
+    'http://clubfinder.us-east-2.elasticbeanstalk.com',
+    'https://www.clubfinder.us/'
 ]
 
 var corsOptions = {
