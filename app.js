@@ -21,8 +21,7 @@ var corsOptions = {
     // origin: 'http://localhost:3000',
     origin: origin,
     credentials: true,
-    "Access-Control-Allow-Credentials": true,
-    "Access-Control-Allow-Origin": true
+    allowedHeaders: ['Content-Type']
 }
 
 app.use(cors(corsOptions));
