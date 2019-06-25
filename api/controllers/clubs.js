@@ -157,7 +157,7 @@ exports.post_new_club = (req, res, next) => {
                 // Create new club object from body data
                 const club = new Club({
                     _id: new mongoose.Types.ObjectId(),
-                    slug: slug,
+                    // slug: slug,
                     name: req.body.name,
                     address: req.body.address,
                     city: req.body.city,
@@ -165,8 +165,8 @@ exports.post_new_club = (req, res, next) => {
                     zipCode: req.body.zipCode,
                     formatted_address: formatted_address,
                     loc: loc,
-                    user: req.body.user,
-                    images: req.body.images,
+                    // user: req.body.user,
+                    // images: req.body.images,
                     url: req.body.url
                 });
 

@@ -4,7 +4,7 @@ const s3 = require('./awsconfig');
 
 const fileFilter = (req, file, cb) => {
   // accept an incoming file
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/tiff') {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/tiff' || file.mimetype === 'image/gif') {
     cb(null, true);
   } else {
     req.fileValidationError = 'Thats not a damn picture! Try something else';

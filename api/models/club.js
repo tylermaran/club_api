@@ -54,7 +54,7 @@ const clubSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: false,
-        unique: true
+        unique: false
     },
     images: [{ // Image (linked schema)
         type: mongoose.Schema.Types.ObjectId,
