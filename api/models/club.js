@@ -1,10 +1,3 @@
-// survey results
-// classification
-// Awards
-// ClubCorp member
-// Reviews
-// platinum list
-
 const mongoose = require('mongoose');
 
 // make sure to use the mongoose.Schema.whatever when designating the schema
