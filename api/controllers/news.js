@@ -15,7 +15,22 @@ exports.get_all_news = (req, res, next) => {
     });
 }
 
-// G2: Get Specific News
+// G1: GET All News
+exports.get_news_state = (req, res, next) => {
+    News.find({
+        state: req.body.state
+    }).select().exec().then( result => {
+        console.log(result);
+        res.status(200).json(result);
+    }).catch( err => {
+        console.log(err);
+        res.status(404).json({
+            error: err
+        });
+    });
+}
+
+// G3: Get Specific News
 exports.get_one_news = (req, res, next) => {
     const newsID = req.params.newsID;
     console.log('NewsID: ' + newsID);
@@ -25,7 +40,10 @@ exports.get_one_news = (req, res, next) => {
         .exec()
         .then(result => {
             console.log(result);
-            res.status(200).json(result);
+            res.status(200).json({
+                message: result.title,
+                result: result
+            });
         }).catch(err => {
             console.log(err);
             res.status(404).json({
@@ -34,10 +52,8 @@ exports.get_one_news = (req, res, next) => {
         })
 }
 
-
 // P1: POST New News Article
 exports.post_new_news = (req, res, next) => {
-
     const news = new News({
         _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
@@ -56,6 +72,43 @@ exports.post_new_news = (req, res, next) => {
     }).catch( err => {
         console.log(err);
         res.status(500).json({
+            error: err
+        });
+    });
+}
+
+
+
+// P2: PATCH Existing Article
+exports.patch_existing_article = (req, res, next) => {
+    // Lookup existing club by id
+    const id = req.params.newsID;
+
+    const updateOps = {}
+    for (const key of Object.keys(req.body)) {
+        updateOps[key] = req.body[key]
+    }
+    
+    News.findByIdAndUpdate({
+        _id: id,
+    }, {
+        $set: updateOps
+    }, {
+        new: true
+    }).exec().then(result => {
+        console.log(result);
+        if (result) {
+            res.status(200).json({
+                message: 'Editing: ' + result.title,
+                update: result
+            });
+        } else {
+            res.status(404).json({
+                message: 'Article not found.'
+            });
+        }
+    }).catch(err => {
+        res.status(404).json({
             error: err
         });
     });

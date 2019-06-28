@@ -24,6 +24,9 @@ const newsSchema = mongoose.Schema({
     },
     content: {
         type: String
+    },
+    state: {
+        type: String
     }
 });
 
