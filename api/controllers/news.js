@@ -77,10 +77,8 @@ exports.post_new_news = (req, res, next) => {
     });
 }
 
-
-
 // P2: PATCH Existing Article
-exports.patch_existing_article = (req, res, next) => {
+exports.patch_one_article = (req, res, next) => {
     // Lookup existing club by id
     const id = req.params.newsID;
 
