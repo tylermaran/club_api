@@ -17,11 +17,16 @@ exports.get_all_news = (req, res, next) => {
 
 // G1: GET All News
 exports.get_news_state = (req, res, next) => {
+    const state = req.params.state
+
     News.find({
-        state: req.body.state
+        state: state
     }).select().exec().then( result => {
         console.log(result);
-        res.status(200).json(result);
+        res.status(200).json({
+            state: state,
+            result: result
+        });
     }).catch( err => {
         console.log(err);
         res.status(404).json({
