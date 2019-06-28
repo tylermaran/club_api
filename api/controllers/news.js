@@ -60,7 +60,8 @@ exports.post_new_news = (req, res, next) => {
         title_image: req.body.title_image,
         description: req.body.description,
         author: req.body.author,
-        content: req.body.content
+        content: req.body.content,
+        state: req.body.state
     });
 
     news.save().then( result => {
