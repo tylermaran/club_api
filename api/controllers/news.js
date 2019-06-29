@@ -117,3 +117,18 @@ exports.patch_one_article = (req, res, next) => {
         });
     });
 }
+
+// D1: DELETE Existing Article
+exports.delete_one_article = (req, res, next) => {
+    const id = req.params.newsID;
+    News.findByIdAndDelete(id).exec().then(result => {
+        res.status(200).json({
+            message: 'Deleted News Article'
+        });
+    }).catch(err => {
+        console.log(err);
+        res.status(404).json({
+            error: err
+        });
+    });
+}

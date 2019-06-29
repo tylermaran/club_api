@@ -32,6 +32,7 @@ const userRoutes = require('./api/routes/users');
 const surveyRoutes = require('./api/routes/survey');
 const imageRoutes = require('./api/routes/images');
 const newsRoutes = require('./api/routes/news');
+const featuredRoutes = require('./api/routes/featured');
 
 // connect to mongoose and you need to pass a path
 // You also need to change out the password here for your database password
@@ -63,6 +64,7 @@ app.use('/users', userRoutes);
 app.use('/survey', surveyRoutes);
 app.use('/images', imageRoutes);
 app.use('/news', newsRoutes);
+app.use('/featured', featuredRoutes);
 app.use('/', (req, res, next) => {
     res.status(200).json({
         message: 'Welcome to ClubFinder API!',

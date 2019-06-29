@@ -18,4 +18,7 @@ router.post('/', NewsController.post_new_news);
 //P2: PATCH Existing Article
 router.patch('/newsID', NewsController.patch_one_article);
 
+// D1: DELETE Existing Article
+router.delete('/:newsID', NewsController.delete_one_article);
+
 module.exports = router;
